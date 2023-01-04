@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+type TDeck = {
+  title: string;
+  _id: string;
 }
 
-export default App
+function App() {
+	const [deckTitle, setDeckTitle] = useState('');
+	const [decks, setDecks] = useState<TDeck[]>([]);
+	useEffect(() => {
+		async function fetchDecks() {
+			const response = await fetch('http://localhost:3000/decks');
+			const fetchedDecks = await response.json();
+			setDecks(fetchedDecks);
+		}
+    fetchDecks();
+	}, []);
+	async function handleCreateDeck(e: React.FormEvent) {
+		e.preventDefault();
+		await fetch('http://localhost:3000/decks', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				title: deckTitle,
+			}),
+		});
+		setDeckTitle('');
+	}
+	return (
+		<div className='App'>
+      <ul className='decks'>
+      {decks.map(deck=> <li key={deck._id}>{deck.title}</li>)}
+      </ul>
+			<form onSubmit={handleCreateDeck}>
+				<label htmlFor='deck-title'>Deck Title</label>
+				<input
+					type='text'
+					name='deck-title'
+					id='deck-title'
+					value={deckTitle}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						setDeckTitle(e.target.value)
+					}
+				/>
+				<button>Create Deck</button>
+			</form>
+		</div>
+	);
+}
+
+export default App;
