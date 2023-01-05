@@ -8,3 +8,5 @@
 
 ## Screenshots
 
+![image](https://user-images.githubusercontent.com/64531568/210819421-3ad7c2f2-a3cd-4b56-b9be-94c3c744b923.png)
+![image](https://user-images.githubusercontent.com/64531568/210819562-81b09215-e8e6-43bf-95de-477a682f60b4.png)
