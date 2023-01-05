@@ -33,7 +33,7 @@ function App() {
 			<ul className='decks'>
 				{decks.map((deck) => (
 					<li key={deck._id}>
-						<Link to={`/decks/${deck._id}`}>{deck.title}</Link>
+						<Link className='text' to={`/decks/${deck._id}`}>{deck.title.length>10 ? deck.title.substring(0,10)+'...': deck.title}</Link>
 						<button onClick={() => handleDelete(deck._id)}>
 							X
 						</button>
