@@ -1,9 +1,12 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import { config } from 'dotenv';
 import cors from 'cors';
 
-import Deck from './models/Deck';
+import getDeck from './controllers/getDeck';
+import getDecks from './controllers/getDecks';
+import createDeck from './controllers/createDeck';
+import deleteDeck from './controllers/deleteDeck';
 
 config();
 
@@ -14,32 +17,12 @@ app.use(cors());
 app.use(express.json());
 
 app.route('/decks')
-	.get(async (req: Request, res: Response) => {
-		const decks = await Deck.find();
-		res.status(200).json(decks);
-	})
-	.post(async (req: Request, res: Response) => {
-        const { title } = req.body;
-		const newDeck = new Deck({
-            title,
-		});
-		const createdDeck = await newDeck.save();
-        console.log(`[ ✅ ] ${createdDeck._id} created`);
-		res.status(200).json(createdDeck);
-	});
+	.get(getDecks)
+	.post(createDeck);
 
 app.route('/decks/:deckId')
-	.get(async (req: Request, res: Response) => {
-		const deckId = req.params.deckId;
-		const decks = await Deck.findById(deckId);
-		res.status(200).json(decks);
-	})
-	.delete(async (req: Request, res: Response) => {
-        const deckId = req.params.deckId;
-        console.log(`[ ❌ ] ${deckId} deleted`)
-		const deletedDeck = await Deck.findByIdAndDelete(deckId);
-		res.status(200).json(deletedDeck);
-	});
+	.get(getDeck)
+	.delete(deleteDeck);
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_DB!).then(() => {

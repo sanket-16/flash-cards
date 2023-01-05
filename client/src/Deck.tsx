@@ -1,5 +1,9 @@
+import { useParams } from "react-router-dom";
+
 function Deck() {
-	return <div>Hello World</div>;
+	const {deckId} = useParams();
+
+	return <div>{deckId}</div>;
 }
 
 export default Deck;
