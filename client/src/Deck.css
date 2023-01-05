@@ -1,9 +1,3 @@
-#root {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-}
-
 .deck {
 	display: flex;
 	place-items: center;
@@ -19,7 +13,6 @@
 	padding: 0;
 	list-style: none;
 	text-align: center;
-
 }
 
 .cards li {
@@ -57,4 +50,4 @@
 	.cards {
 		grid-template-columns: repeat(1, 1fr);
 	}
-  }
+}

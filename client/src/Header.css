@@ -1,17 +1,16 @@
 .Header {
-    display: flex;
-    align-items: center;
-    margin: 1rem;
-    font-size: 2rem;
+	display: flex;
+	align-items: center;
+	margin: 1rem;
+	font-size: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
-    .Header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 1rem;
-        font-size: 2rem;
-    }
-    
-  }
+	.Header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 1rem;
+		font-size: 2rem;
+	}
+}

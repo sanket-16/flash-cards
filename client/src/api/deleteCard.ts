@@ -1,10 +1,10 @@
-import { API_URL } from "./config";
+import { API_URL } from './config';
 
-async function deleteCard(deckId: String,index:Number) {
+async function deleteCard(deckId: String, index: Number) {
 	const updatedDeck = await fetch(`${API_URL}/decks/${deckId}/${index}`, {
 		method: 'DELETE',
 	});
-    return updatedDeck;
+	return updatedDeck;
 }
 
 export default deleteCard;

@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import createDeck from './api/createDecks';
-import deleteDeck from './api/deleteDeck';
-import getDecks, {TDeck} from './api/getDecks';
+import { TDeck, getDecks, deleteDeck, createDeck } from './api/config';
 import './App.css';
-
-
 
 function App() {
 	const [deckTitle, setDeckTitle] = useState('');
 	const [decks, setDecks] = useState<TDeck[]>([]);
 	useEffect(() => {
 		async function fetchDecks() {
-      const fetchedDecks = await getDecks();
-		  setDecks(fetchedDecks);
-    }
-    fetchDecks();
+			const fetchedDecks = await getDecks();
+			setDecks(fetchedDecks);
+		}
+		fetchDecks();
 	}, []);
 	async function handleCreateDeck(e: React.FormEvent) {
 		e.preventDefault();
@@ -24,7 +20,7 @@ function App() {
 		setDeckTitle('');
 	}
 	async function handleDelete(deckId: string) {
-		deleteDeck(deckId)
+		deleteDeck(deckId);
 		setDecks(decks.filter((deck) => deck._id !== deckId));
 	}
 	return (
@@ -33,7 +29,11 @@ function App() {
 			<ul className='decks'>
 				{decks.map((deck) => (
 					<li key={deck._id}>
-						<Link className='text' to={`/decks/${deck._id}`}>{deck.title.length>10 ? deck.title.substring(0,10)+'...': deck.title}</Link>
+						<Link className='text' to={`/decks/${deck._id}`}>
+							{deck.title.length > 10
+								? deck.title.substring(0, 10) + '...'
+								: deck.title}
+						</Link>
 						<button onClick={() => handleDelete(deck._id)}>
 							X
 						</button>

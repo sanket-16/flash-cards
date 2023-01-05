@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import createCard from './api/createCard';
-import deleteCard from './api/deleteCard';
-import getDeck from './api/getDeck';
-import { TDeck } from './api/getDecks';
+import { TDeck, getDeck, deleteCard, createCard } from './api/config';
 
 import './Deck.css';
 
 function App() {
 	const { deckId } = useParams();
 	const [text, setText] = useState('');
-	const [deck,setDeck] = useState<TDeck|undefined >()
+	const [deck, setDeck] = useState<TDeck | undefined>();
 	const [cards, setCards] = useState<String[]>([]);
 	useEffect(() => {
 		async function fetchDeck() {
@@ -27,10 +24,9 @@ function App() {
 		setText('');
 	}
 	async function handleDelete(index: number) {
-		const response = await deleteCard(deckId!,index);
+		const response = await deleteCard(deckId!, index);
 		const newDeck = await response.json();
 		setCards(newDeck.cards);
-		
 	}
 	return (
 		<div className='deck'>

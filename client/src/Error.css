@@ -1,0 +1,22 @@
+.error-container {
+    padding: 5rem 2rem;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    font-size: 6rem;
+    padding: 2rem 0;
+}
+
+.error-subtitle {
+    padding: 2rem 0;
+    color: rgba(255, 255, 255,0.5);
+}
+
+.error-subtitle span {
+text-decoration: underline;
+
+}
