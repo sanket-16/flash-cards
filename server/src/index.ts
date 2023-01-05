@@ -12,7 +12,7 @@ import deleteCardDeck from './controllers/deleteCardDeck';
 
 config();
 
-const PORT: Number = 3000;
+const PORT: Number = Number(process.env.PORT) || 3000;
 const app = express();
 
 app.use(cors());
