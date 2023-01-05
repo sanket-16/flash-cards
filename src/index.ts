@@ -7,6 +7,8 @@ import getDeck from './controllers/getDeck';
 import getDecks from './controllers/getDecks';
 import createDeck from './controllers/createDeck';
 import deleteDeck from './controllers/deleteDeck';
+import createCardForDeck from './controllers/createCardForDeck';
+import deleteCardDeck from './controllers/deleteCardDeck';
 
 config();
 
@@ -22,7 +24,11 @@ app.route('/decks')
 
 app.route('/decks/:deckId')
 	.get(getDeck)
+	.post(createCardForDeck)
 	.delete(deleteDeck);
+
+app.route('/decks/:deckId/:cardIndex')
+	.delete(deleteCardDeck);
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGO_DB!).then(() => {
