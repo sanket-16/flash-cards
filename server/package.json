@@ -2,9 +2,11 @@
   "name": "typescript-express-junkie",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon --watch \"src/\" --ext \"ts,json\" --exec \"ts-node src/index.ts\""
+    "dev": "nodemon --watch \"src/\" --ext \"ts,json\" --exec \"ts-node src/index.ts\"",
+    "start": "node dist/index.js",
+    "build": "tsc "
   },
   "author": "",
   "license": "ISC",
