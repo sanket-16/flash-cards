@@ -5,7 +5,7 @@ import getDeck from './getDeck';
 import createCard from './createCard';
 import deleteCard from './deleteCard';
 
-const API_URL = '/api';
+const API_URL = 'https://flashcards-demo.vercel.app';
 
 export type TDeck = {
   title: string;
