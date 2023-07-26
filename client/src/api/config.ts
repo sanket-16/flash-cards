@@ -5,20 +5,20 @@ import getDeck from './getDeck';
 import createCard from './createCard';
 import deleteCard from './deleteCard';
 
-const API_URL = "http://localhost:3000";
+const API_URL = '/api';
 
 export type TDeck = {
-	title: string;
-	cards: string[];
-	_id: string;
+  title: string;
+  cards: string[];
+  _id: string;
 };
 
 export {
-	API_URL,
-	getDecks,
-	deleteDeck,
-	createDeck,
-	createCard,
-	deleteCard,
-	getDeck,
+  API_URL,
+  getDecks,
+  deleteDeck,
+  createDeck,
+  createCard,
+  deleteCard,
+  getDeck,
 };
