@@ -5,7 +5,7 @@ import getDeck from './getDeck';
 import createCard from './createCard';
 import deleteCard from './deleteCard';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:3000";
 
 export type TDeck = {
 	title: string;
